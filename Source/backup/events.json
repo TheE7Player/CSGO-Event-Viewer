@@ -1,0 +1,1951 @@
+"player_death"  : a game event, name may be 32 characters long
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID who died"
+	"attacker"    "integer"    "user ID who killed"
+	"assister"    "integer"    "user ID who assisted in the kill"
+	"assistedflash"    "bool"    "assister helped with a flash"
+	"weapon"    "string"    "weapon name killer used"
+	"weapon_itemid"    "string"    "inventory item id of weapon killer used"
+	"weapon_fauxitemid"    "string"    "faux item id of weapon killer used"
+	"weapon_originalowner_xuid"    "string"    ""
+	"headshot"    "bool"    "singals a headshot"
+	"dominated"    "integer"    "did killer dominate victim with this kill"
+	"revenge"    "integer"    "did killer get revenge on victim with this kill"
+	"wipe"    "integer"    "is the kill resulting in squad wipe"
+	"penetrated"    "integer"    "number of objects shot penetrated before killing target"
+	"noreplay"    "bool"    "if replay data is unavailable, this will be present and set to false"
+}
+
+"other_death"
+{
+	"type" : "modevents"
+	"otherid"    "integer"    "other entity ID who died"
+	"othertype"    "string"    "other entity type"
+	"attacker"    "integer"    "user ID who killed"
+	"weapon"    "string"    "weapon name killer used"
+	"weapon_itemid"    "string"    "inventory item id of weapon killer used"
+	"weapon_fauxitemid"    "string"    "faux item id of weapon killer used"
+	"weapon_originalowner_xuid"    "string"    ""
+	"headshot"    "bool"    "singals a headshot"
+	"penetrated"    "integer"    "number of objects shot penetrated before killing target"
+}
+
+"player_hurt"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player index who was hurt"
+	"attacker"    "integer"    "player index who attacked"
+	"health"    "integer"    "remaining health points"
+	"armor"    "integer"    "remaining armor points"
+	"weapon"    "string"    "weapon name attacker used, if not the world"
+	"dmg_health"    "integer"    "damage done to health"
+	"dmg_armor"    "integer"    "damage done to armor"
+	"hitgroup"    "integer"    "hitgroup that was damaged"
+}
+
+"item_purchase"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"team"    "integer"    ""
+	"loadout"    "integer"    ""
+	"weapon"    "string"    ""
+}
+
+"bomb_beginplant"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who is planting the bomb"
+	"site"    "integer"    "bombsite index"
+}
+
+"bomb_abortplant"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who is planting the bomb"
+	"site"    "integer"    "bombsite index"
+}
+
+"bomb_planted"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who planted the bomb"
+	"site"    "integer"    "bombsite index"
+}
+
+"bomb_defused"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who defused the bomb"
+	"site"    "integer"    "bombsite index"
+}
+
+"bomb_exploded"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who planted the bomb"
+	"site"    "integer"    "bombsite index"
+}
+
+"bomb_dropped"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who dropped the bomb"
+	"entindex"    "integer"    ""
+}
+
+"bomb_pickup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who picked up the bomb"
+}
+
+"defuser_dropped"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    "defuser's entity ID"
+}
+
+"defuser_pickup"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    "defuser's entity ID"
+	"userid"    "integer"    "player who picked up the defuser"
+}
+
+"announce_phase_end"
+{
+	"type" : "modevents"
+}
+
+"cs_intermission"
+{
+	"type" : "modevents"
+}
+
+"bomb_begindefuse"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who is defusing"
+	"haskit"    "bool"    ""
+}
+
+"bomb_abortdefuse"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who was defusing"
+}
+
+"hostage_follows"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who touched the hostage"
+	"hostage"    "integer"    "hostage entity index"
+}
+
+"hostage_hurt"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who hurt the hostage"
+	"hostage"    "integer"    "hostage entity index"
+}
+
+"hostage_killed"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who killed the hostage"
+	"hostage"    "integer"    "hostage entity index"
+}
+
+"hostage_rescued"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who rescued the hostage"
+	"hostage"    "integer"    "hostage entity index"
+	"site"    "integer"    "rescue site index"
+}
+
+"hostage_stops_following"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who rescued the hostage"
+	"hostage"    "integer"    "hostage entity index"
+}
+
+"hostage_rescued_all"
+{
+	"type" : "modevents"
+}
+
+"hostage_call_for_help"
+{
+	"type" : "modevents"
+	"hostage"    "integer"    "hostage entity index"
+}
+
+"vip_escaped"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who was the VIP"
+}
+
+"vip_killed"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who was the VIP"
+	"attacker"    "integer"    "user ID who killed the VIP"
+}
+
+"player_radio"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"slot"    "integer"    ""
+}
+
+"bomb_beep"
+{
+	"type" : "modevents"
+	"entindex"    "integer"    "c4 entity"
+}
+
+"weapon_fire"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"weapon"    "string"    "weapon name used"
+	"silenced"    "bool"    "is weapon silenced"
+}
+
+"weapon_fire_on_empty"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"weapon"    "string"    "weapon name used"
+}
+
+"grenade_thrown"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"weapon"    "string"    "weapon name used"
+}
+
+"weapon_outofammo"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"weapon_reload"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"weapon_zoom"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"silencer_detach"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"inspect_weapon"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"weapon_zoom_rifle"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"player_spawned"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"inrestart"    "bool"    "true if restart is pending"
+}
+
+"item_pickup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"item"    "string"    "either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'"
+	"silent"    "bool"    ""
+	"defindex"    "integer"    ""
+}
+
+"item_pickup_failed"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"item"    "string"    ""
+	"reason"    "integer"    ""
+	"limit"    "integer"    ""
+}
+
+"item_remove"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"item"    "string"    "either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'"
+	"defindex"    "integer"    ""
+}
+
+"ammo_pickup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"item"    "string"    "either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'"
+	"index"    "integer"    "the weapon entindex"
+}
+
+"item_equip"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"item"    "string"    "either a weapon such as 'tmp' or 'hegrenade', or an item such as 'nvgs'"
+	"defindex"    "integer"    ""
+	"canzoom"    "bool"    ""
+	"hassilencer"    "bool"    ""
+	"issilenced"    "bool"    ""
+	"hastracers"    "bool"    ""
+	"weptype"    "integer"    ""
+	"ispainted"    "bool"    ""
+}
+
+"enter_buyzone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"canbuy"    "bool"    ""
+}
+
+"exit_buyzone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"canbuy"    "bool"    ""
+}
+
+"buytime_ended"
+{
+	"type" : "modevents"
+}
+
+"enter_bombzone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"hasbomb"    "bool"    ""
+	"isplanted"    "bool"    ""
+}
+
+"exit_bombzone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"hasbomb"    "bool"    ""
+	"isplanted"    "bool"    ""
+}
+
+"enter_rescue_zone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"exit_rescue_zone"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"silencer_off"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"silencer_on"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"buymenu_open"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"buymenu_close"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"round_prestart"  : sent before all other round restart actions
+{
+	"type" : "modevents"
+}
+
+"round_poststart"  : sent after all other round restart actions
+{
+	"type" : "modevents"
+}
+
+"round_start"
+{
+	"type" : "modevents"
+	"timelimit"    "integer"    "round time limit in seconds"
+	"fraglimit"    "integer"    "frag limit in seconds"
+	"objective"    "string"    "round objective"
+}
+
+"round_end"
+{
+	"type" : "modevents"
+	"winner"    "integer"    "winner team/user i"
+	"reason"    "integer"    "reson why team won"
+	"message"    "string"    "end round message"
+	"legacy"    "integer"    "server-generated legacy value"
+	"player_count"    "integer"    "total number of players alive at the end of round, used for statistics gathering, computed on the server in the event client is in replay when receiving this message"
+	"nomusic"    "integer"    "if set, don't play round end music, because action is still on-going"
+}
+
+"grenade_bounce"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"hegrenade_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"flashbang_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"smokegrenade_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"smokegrenade_expired"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"molotov_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"decoy_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"decoy_started"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"tagrenade_detonate"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"inferno_startburn"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"inferno_expire"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"inferno_extinguish"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"decoy_firing"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"bullet_impact"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"player_footstep"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"player_jump"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"player_blind"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"attacker"    "integer"    "user ID who threw the flash"
+	"entityid"    "integer"    "the flashbang going off"
+	"blind_duration"    "float"    ""
+}
+
+"player_falldamage"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"damage"    "float"    ""
+}
+
+"door_moving"
+{
+	"type" : "modevents"
+	"entindex"    "integer"    ""
+	"userid"    "integer"    ""
+}
+
+"round_freeze_end"
+{
+	"type" : "modevents"
+}
+
+"mb_input_lock_success"
+{
+	"type" : "modevents"
+}
+
+"mb_input_lock_cancel"
+{
+	"type" : "modevents"
+}
+
+"nav_blocked"
+{
+	"type" : "modevents"
+	"area"    "integer"    ""
+	"blocked"    "bool"    ""
+}
+
+"nav_generate"
+{
+	"type" : "modevents"
+}
+
+"player_stats_updated"
+{
+	"type" : "modevents"
+	"forceupload"    "bool"    ""
+}
+
+"achievement_info_loaded"
+{
+	"type" : "modevents"
+}
+
+"spec_target_updated"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "entindex of the player"
+}
+
+"spec_mode_updated"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "entindex of the player"
+}
+
+"hltv_changed_mode"
+{
+	"type" : "modevents"
+	"oldmode"    "integer"    ""
+	"newmode"    "integer"    ""
+	"obs_target"    "integer"    ""
+}
+
+"cs_game_disconnected"
+{
+	"type" : "modevents"
+}
+
+"cs_win_panel_round"
+{
+	"type" : "modevents"
+	"show_timer_defend"    "bool"    ""
+	"show_timer_attack"    "bool"    ""
+	"timer_time"    "integer"    ""
+	"final_event"    "integer"    ""
+	"funfact_token"    "string"    ""
+	"funfact_player"    "integer"    ""
+	"funfact_data1"    "integer"    ""
+	"funfact_data2"    "integer"    ""
+	"funfact_data3"    "integer"    ""
+}
+
+"cs_win_panel_match"
+{
+	"type" : "modevents"
+}
+
+"cs_match_end_restart"
+{
+	"type" : "modevents"
+}
+
+"cs_pre_restart"
+{
+	"type" : "modevents"
+}
+
+"show_freezepanel"
+{
+	"type" : "modevents"
+	"victim"    "integer"    "endindex of the one who was killed"
+	"killer"    "integer"    "entindex of the killer entity"
+	"hits_taken"    "integer"    ""
+	"damage_taken"    "integer"    ""
+	"hits_given"    "integer"    ""
+	"damage_given"    "integer"    ""
+}
+
+"hide_freezepanel"
+{
+	"type" : "modevents"
+}
+
+"freezecam_started"
+{
+	"type" : "modevents"
+}
+
+"player_avenged_teammate"
+{
+	"type" : "modevents"
+	"avenger_id"    "integer"    ""
+	"avenged_player_id"    "integer"    ""
+}
+
+"achievement_earned"
+{
+	"type" : "modevents"
+	"player"    "integer"    "entindex of the player"
+	"achievement"    "integer"    "achievement ID"
+}
+
+"achievement_earned_local"
+{
+	"type" : "modevents"
+	"achievement"    "integer"    "achievement ID"
+	"splitscreenplayer"    "integer"    "splitscreen ID"
+}
+
+"item_found"
+{
+	"type" : "modevents"
+	"player"    "integer"    "entindex of the player"
+	"quality"    "integer"    "quality of the item"
+	"method"    "integer"    "method by which we acquired the item"
+	"itemdef"    "integer"    "the item definition index"
+	"itemid"    "integer"    "the item id in the players inventory"
+}
+
+"items_gifted"
+{
+	"type" : "modevents"
+	"player"    "integer"    "entindex of the player who sent the gift"
+	"itemdef"    "integer"    "the item definition index of the gift that was opened"
+	"numgifts"    "integer"    "how many recipients got the gifts in this gift batch"
+	"giftidx"    "integer"    "index of recipient in this gift batch (0 for the first recipient, 1 for second, and so on...)"
+	"accountid"    "integer"    "gift recipient's account ID"
+}
+
+"repost_xbox_achievements"
+{
+	"type" : "modevents"
+	"splitscreenplayer"    "integer"    "splitscreen ID"
+}
+
+"match_end_conditions"
+{
+	"type" : "modevents"
+	"frags"    "integer"    ""
+	"max_rounds"    "integer"    ""
+	"win_rounds"    "integer"    ""
+	"time"    "integer"    ""
+}
+
+"round_mvp"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"reason"    "integer"    ""
+	"musickitmvps"    "integer"    ""
+	"nomusic"    "integer"    ""
+}
+
+"player_decal"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"teamplay_round_start"  : round restart
+{
+	"type" : "modevents"
+	"full_reset"    "bool"    "is this a full reset of the map"
+}
+
+"show_survival_respawn_status"
+{
+	"type" : "modevents"
+	"loc_token"    "string"    ""
+	"duration"    "integer"    ""
+	"userid"    "integer"    ""
+}
+
+"client_disconnect"
+{
+	"type" : "modevents"
+}
+
+"gg_player_levelup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who leveled up"
+	"weaponrank"    "integer"    ""
+	"weaponname"    "string"    "name of weapon being awarded"
+}
+
+"ggtr_player_levelup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who leveled up"
+	"weaponrank"    "integer"    ""
+	"weaponname"    "string"    "name of weapon being awarded"
+}
+
+"assassination_target_killed"
+{
+	"type" : "modevents"
+	"target"    "integer"    "player killed"
+	"killer"    "integer"    "killing player (with the quest)"
+}
+
+"ggprogressive_player_levelup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who leveled up"
+	"weaponrank"    "integer"    ""
+	"weaponname"    "string"    "name of weapon being awarded"
+}
+
+"gg_killed_enemy"
+{
+	"type" : "modevents"
+	"victimid"    "integer"    "user ID who died"
+	"attackerid"    "integer"    "user ID who killed"
+	"dominated"    "integer"    "did killer dominate victim with this kill"
+	"revenge"    "integer"    "did killer get revenge on victim with this kill"
+	"bonus"    "bool"    "did killer kill with a bonus weapon?"
+}
+
+"gg_final_weapon_achieved"
+{
+	"type" : "modevents"
+	"playerid"    "integer"    "user ID who achieved the final gun game weapon"
+}
+
+"gg_bonus_grenade_achieved"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID who achieved the bonus grenade"
+}
+
+"switch_team"
+{
+	"type" : "modevents"
+	"numPlayers"    "integer"    "number of active players on both T and CT"
+	"numSpectators"    "integer"    "number of spectators"
+	"avg_rank"    "integer"    "average rank of human players"
+	"numTSlotsFree"    "integer"    ""
+	"numCTSlotsFree"    "integer"    ""
+}
+
+"gg_leader"
+{
+	"type" : "modevents"
+	"playerid"    "integer"    "user ID that is currently in the lead"
+}
+
+"gg_team_leader"
+{
+	"type" : "modevents"
+	"playerid"    "integer"    "user ID that is currently in the lead"
+}
+
+"gg_player_impending_upgrade"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player who will be leveling up"
+}
+
+"write_profile_data"
+{
+	"type" : "modevents"
+}
+
+"trial_time_expired"
+{
+	"type" : "modevents"
+	"slot"    "integer"    "player whose time has expired"
+}
+
+"update_matchmaking_stats"
+{
+	"type" : "modevents"
+}
+
+"player_reset_vote"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"vote"    "bool"    ""
+}
+
+"enable_restart_voting"
+{
+	"type" : "modevents"
+	"enable"    "bool"    ""
+}
+
+"sfuievent"
+{
+	"type" : "modevents"
+	"action"    "string"    ""
+	"data"    "string"    ""
+	"slot"    "integer"    ""
+}
+
+"start_vote"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID on server"
+	"type"    "integer"    ""
+	"vote_parameter"    "integer"    ""
+}
+
+"player_given_c4"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID who received the c4"
+}
+
+"player_become_ghost"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID who received the c4"
+}
+
+"gg_reset_round_start_sounds"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID who should have round start sounds reset"
+}
+
+"tr_player_flashbanged"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID of the player banged"
+}
+
+"tr_mark_complete"
+{
+	"type" : "modevents"
+	"complete"    "integer"    ""
+}
+
+"tr_mark_best_time"
+{
+	"type" : "modevents"
+	"time"    "integer"    ""
+}
+
+"tr_exit_hint_trigger"
+{
+	"type" : "modevents"
+}
+
+"bot_takeover"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"botid"    "integer"    ""
+	"index"    "integer"    ""
+}
+
+"tr_show_finish_msgbox"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID of the player"
+}
+
+"tr_show_exit_msgbox"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "user ID of the player"
+}
+
+"reset_player_controls"  : used for demos
+{
+	"type" : "modevents"
+}
+
+"jointeam_failed"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"reason"    "integer"    "0 = team_full"
+}
+
+"teamchange_pending"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"toteam"    "integer"    ""
+}
+
+"material_default_complete"
+{
+	"type" : "modevents"
+}
+
+"cs_prev_next_spectator"
+{
+	"type" : "modevents"
+	"next"    "bool"    ""
+}
+
+"cs_handle_ime_event"
+{
+	"type" : "modevents"
+	"local"    ""    ""
+	"eventtype"    "string"    ""
+	"eventdata"    "string"    ""
+}
+
+"nextlevel_changed"  : a game event, name may be 32 characters long
+{
+	"type" : "modevents"
+	"nextlevel"    "string"    ""
+	"mapgroup"    "string"    ""
+	"skirmishmode"    "string"    ""
+}
+
+"seasoncoin_levelup"
+{
+	"type" : "modevents"
+	"player"    "integer"    "entindex of the player"
+	"category"    "integer"    ""
+	"rank"    "integer"    ""
+}
+
+"tournament_reward"
+{
+	"type" : "modevents"
+	"defindex"    "integer"    ""
+	"totalrewards"    "integer"    ""
+	"accountid"    "integer"    ""
+}
+
+"start_halftime"
+{
+	"type" : "modevents"
+}
+
+"ammo_refill"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"success"    "bool"    ""
+}
+
+"parachute_pickup"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"parachute_deploy"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"dronegun_attack"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"drone_dispatched"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"priority"    "integer"    ""
+	"drone_dispatched"    "integer"    ""
+}
+
+"loot_crate_visible"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player entindex"
+	"subject"    "integer"    "crate entindex"
+	"type"    "string"    "type of crate (metal, wood, or paradrop)"
+}
+
+"loot_crate_opened"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player entindex"
+	"type"    "string"    "type of crate (metal, wood, or paradrop)"
+}
+
+"open_crate_instr"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player entindex"
+	"subject"    "integer"    "crate entindex"
+	"type"    "string"    "type of crate (metal, wood, or paradrop)"
+}
+
+"smoke_beacon_paradrop"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"paradrop"    "integer"    ""
+}
+
+"survival_paradrop_spawn"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+}
+
+"survival_paradrop_break"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+}
+
+"drone_cargo_detached"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"cargo"    "integer"    ""
+	"delivered"    "bool"    ""
+}
+
+"drone_above_roof"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"cargo"    "integer"    ""
+}
+
+"choppers_incoming_warning"
+{
+	"type" : "modevents"
+	"global"    "bool"    ""
+}
+
+"firstbombs_incoming_warning"
+{
+	"type" : "modevents"
+	"global"    "bool"    ""
+}
+
+"dz_item_interaction"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player entindex"
+	"subject"    "integer"    "crate entindex"
+	"type"    "string"    "type of crate (metal, wood, or paradrop)"
+}
+
+"snowball_hit_player_face"
+{
+	"type" : "modevents"
+	"userid"    "integer"    "player userid"
+}
+
+"survival_teammate_respawn"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"survival_no_respawns_warning"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"survival_no_respawns_final"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+}
+
+"player_ping"
+{
+	"type" : "modevents"
+	"userid"    "integer"    ""
+	"entityid"    "integer"    ""
+	"x"    "float"    ""
+	"y"    "float"    ""
+	"z"    "float"    ""
+}
+
+"player_ping_stop"
+{
+	"type" : "modevents"
+	"entityid"    "integer"    ""
+}
+
+"server_spawn"  : send once a server starts
+{
+	"type" : "serverevents"
+	"hostname"    "string"    "public host name"
+	"address"    "string"    "hostame, IP or DNS name"
+	"port"    "integer"    "server port"
+	"game"    "string"    "game dir"
+	"mapname"    "string"    "map name"
+	"maxplayers"    "integer"    "max players"
+	"os"    "string"    "WIN32, LINUX"
+	"dedicated"    "bool"    "true if dedicated server"
+	"official"    "bool"    "true if official valve dedicated server"
+	"password"    "bool"    "true if password protected"
+}
+
+"server_pre_shutdown"  : server is about to be shut down	
+{
+	"type" : "serverevents"
+	"reason"    "string"    "reason why server is about to be shut down"
+}
+
+"server_shutdown"  : server shut down	
+{
+	"type" : "serverevents"
+	"reason"    "string"    "reason why server was shut down"
+}
+
+"server_cvar"  : a server console var has changed
+{
+	"type" : "serverevents"
+	"cvarname"    "string"    "cvar name, eg "mp_roundtime""
+	"cvarvalue"    "string"    "new cvar value"
+}
+
+"server_message"  : a generic server message
+{
+	"type" : "serverevents"
+	"text"    "string"    "the message text"
+}
+
+"server_addban"
+{
+	"type" : "serverevents"
+	"name"    "string"    "player name"
+	"userid"    "integer"    "user ID on server"
+	"networkid"    "string"    "player network (i.e steam) id"
+	"ip"    "string"    "IP address"
+	"duration"    "string"    "length of the ban"
+	"by"    "string"    "banned by..."
+	"kicked"    "bool"    "whether the player was also kicked"
+}
+
+"server_removeban"
+{
+	"type" : "serverevents"
+	"networkid"    "string"    "player network (i.e steam) id"
+	"ip"    "string"    "IP address"
+	"by"    "string"    "removed by..."
+}
+
+"player_connect"  : a new client connected
+{
+	"type" : "serverevents"
+	"name"    "string"    "player name"
+	"index"    "integer"    "player slot (entity index-1)"
+	"userid"    "integer"    "user ID on server (unique on server)"
+	"networkid"    "string"    "player network (i.e steam) id"
+	"address"    "string"    "ip:port"
+}
+
+"player_info"  : a player changed his name
+{
+	"type" : "serverevents"
+	"name"    "string"    "player name"
+	"index"    "integer"    "player slot (entity index-1)"
+	"userid"    "integer"    "user ID on server (unique on server)"
+	"networkid"    "string"    "player network (i.e steam) id"
+	"bot"    "bool"    "true if player is a AI bot"
+}
+
+"player_disconnect"  : a client was disconnected
+{
+	"type" : "serverevents"
+	"userid"    "integer"    "user ID on server"
+	"reason"    "string"    ""self", "kick", "ban", "cheat", "error""
+	"name"    "string"    "player name"
+	"networkid"    "string"    "player network (i.e steam) id"
+}
+
+"player_activate"
+{
+	"type" : "serverevents"
+	"userid"    "integer"    "user ID on server"
+}
+
+"player_connect_full"  : player has sent final message in the connection sequence
+{
+	"type" : "serverevents"
+	"userid"    "integer"    "user ID on server"
+	"index"    "integer"    "player slot (entity index-1)"
+}
+
+"player_say"
+{
+	"type" : "serverevents"
+	"userid"    "integer"    "user ID on server"
+	"text"    "string"    "the say text"
+}
+
+"cs_round_start_beep"
+{
+	"type" : "serverevents"
+}
+
+"cs_round_final_beep"
+{
+	"type" : "serverevents"
+}
+
+"round_time_warning"
+{
+	"type" : "serverevents"
+}
+
+"hltv_replay"
+{
+	"type" : "serverevents"
+	"delay"    "integer"    ""
+}
+
+"gameevents"
+{
+	"type" : "gameevents"
+	"teamid"    "integer"    "unique team id"
+	"teamname"    "string"    "team name eg "Team Blue""
+}
+
+"team_score"  : team score changed
+{
+	"type" : "gameevents"
+	"teamid"    "integer"    "team id"
+	"score"    "integer"    "total team score"
+}
+
+"teamplay_broadcast_audio"  : emits a sound to everyone on a team
+{
+	"type" : "gameevents"
+	"team"    "integer"    "unique team id"
+	"sound"    "string"    "name of the sound to emit"
+}
+
+"gameui_hidden"
+{
+	"type" : "gameevents"
+	"player"    "integer"    "entity used by player"
+	"itemdef"    "integer"    ""
+	"numgifts"    "integer"    ""
+	"giftidx"    "integer"    ""
+	"accountid"    "integer"    ""
+}
+
+"player_team"  : player change his team
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"team"    "integer"    "team id"
+	"oldteam"    "integer"    "old team id"
+	"disconnect"    "bool"    "team change because player disconnects"
+	"autoteam"    "bool"    "true if the player was auto assigned to the team"
+	"silent"    "bool"    "if true wont print the team join messages"
+	"isbot"    "bool"    "true if player is a bot"
+}
+
+"player_class"  : a player changed his class
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"class"    "string"    "new player class / model"
+}
+
+"player_death"  : a game event, name may be 32 charaters long
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID who died"
+	"attacker"    "integer"    "user ID who killed"
+}
+
+"player_hurt"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "player index who was hurt"
+	"attacker"    "integer"    "player index who attacked"
+	"health"    "integer"    "remaining health points"
+}
+
+"player_chat"  : a public player chat
+{
+	"type" : "gameevents"
+	"teamonly"    "bool"    "true if team only chat"
+	"userid"    "integer"    "chatting player"
+	"text"    "string"    "chat text"
+}
+
+"player_score"  : players scores changed
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"kills"    "integer"    "# of kills"
+	"deaths"    "integer"    "# of deaths"
+	"score"    "integer"    "total game score"
+}
+
+"player_spawn"  : player spawned in game
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"teamnum"    "integer"    ""
+}
+
+"player_shoot"  : player shoot his weapon
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"weapon"    "integer"    "weapon ID"
+	"mode"    "integer"    "weapon mode"
+}
+
+"player_use"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"entity"    "integer"    "entity used by player"
+}
+
+"player_changename"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "user ID on server"
+	"oldname"    "string"    "players old (current) name"
+	"newname"    "string"    "players new name"
+}
+
+"player_hintmessage"
+{
+	"type" : "gameevents"
+	"hintmessage"    "string"    "localizable string of a hint"
+}
+
+"game_init"  : sent when a new game is started
+{
+	"type" : "gameevents"
+}
+
+"game_newmap"  : send when new map is completely loaded
+{
+	"type" : "gameevents"
+	"mapname"    "string"    "map name"
+}
+
+"game_start"  : a new game starts
+{
+	"type" : "gameevents"
+	"roundslimit"    "integer"    "max round"
+	"timelimit"    "integer"    "time limit"
+	"fraglimit"    "integer"    "frag limit"
+	"objective"    "string"    "round objective"
+}
+
+"game_end"  : a game ended
+{
+	"type" : "gameevents"
+	"winner"    "integer"    "winner team/user id"
+}
+
+"round_start"
+{
+	"type" : "gameevents"
+	"timelimit"    "integer"    "round time limit in seconds"
+	"fraglimit"    "integer"    "frag limit in seconds"
+	"objective"    "string"    "round objective"
+}
+
+"round_announce_match_point"
+{
+	"type" : "gameevents"
+}
+
+"round_announce_final"
+{
+	"type" : "gameevents"
+}
+
+"round_announce_last_round_half"
+{
+	"type" : "gameevents"
+}
+
+"round_announce_match_start"
+{
+	"type" : "gameevents"
+}
+
+"round_announce_warmup"
+{
+	"type" : "gameevents"
+}
+
+"round_end"
+{
+	"type" : "gameevents"
+	"winner"    "integer"    "winner team/user i"
+	"reason"    "integer"    "reson why team won"
+	"message"    "string"    "end round message"
+	"legacy"    "integer"    "server-generated legacy value"
+}
+
+"round_end_upload_stats"
+{
+	"type" : "gameevents"
+}
+
+"round_officially_ended"
+{
+	"type" : "gameevents"
+}
+
+"round_time_warning"
+{
+	"type" : "gameevents"
+}
+
+"ugc_map_info_received"
+{
+	"type" : "gameevents"
+	"published_file_id"    ""    ""
+}
+
+"ugc_map_unsubscribed"
+{
+{
+	"type" : "gameevents"
+	"published_file_id"    ""    ""
+}
+
+"ugc_map_download_error"
+{
+	"type" : "gameevents"
+	"published_file_id"    ""    ""
+	"error_code"    "integer"    ""
+}
+
+"ugc_file_download_finished"
+{
+	"type" : "gameevents"
+	"hcontent"    ""    "id of this specific content (may be image or map)"
+}
+
+"ugc_file_download_start"
+{
+	"type" : "gameevents"
+	"hcontent"    ""    "id of this specific content (may be image or map)"
+	"published_file_id"    ""    "id of the associated content package"
+}
+
+"begin_new_match"
+{
+	"type" : "gameevents"
+}
+
+"round_start_pre_entity"
+{
+	"type" : "gameevents"
+}
+
+"teamplay_round_start"  : round restart
+{
+	"type" : "gameevents"
+	"full_reset"    "bool"    "is this a full reset of the map"
+}
+
+"hostname_changed"
+{
+	"type" : "gameevents"
+	"hostname"    "string"    ""
+}
+
+"difficulty_changed"
+{
+	"type" : "gameevents"
+	"newDifficulty"    "integer"    ""
+	"oldDifficulty"    "integer"    ""
+	"strDifficulty"    "string"    "new difficulty as string"
+}
+
+"finale_start"
+{
+	"type" : "gameevents"
+	"rushes"    "integer"    ""
+}
+
+"game_message"  : a message send by game logic to everyone
+{
+	"type" : "gameevents"
+	"target"    "integer"    "0 = console, 1 = HUD"
+	"text"    "string"    "the message text"
+}
+
+"dm_bonus_weapon_start"
+{
+	"type" : "gameevents"
+	"time"    "integer"    "The length of time that this bonus lasts"
+	"Pos"    "integer"    "Loadout position of the bonus weapon"
+}
+
+"survival_announce_phase"
+{
+	"type" : "gameevents"
+	"phase"    "integer"    "The phase #"
+}
+
+"break_breakable"
+{
+	"type" : "gameevents"
+	"entindex"    "integer"    ""
+	"userid"    "integer"    ""
+	"material"    "integer"    "BREAK_GLASS, BREAK_WOOD, etc"
+}
+
+"break_prop"
+{
+	"type" : "gameevents"
+	"entindex"    "integer"    ""
+	"userid"    "integer"    ""
+}
+
+"player_decal"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    ""
+}
+
+"entity_killed"
+{
+	"type" : "gameevents"
+	"entindex_killed"    "integer"    ""
+	"entindex_attacker"    "integer"    ""
+	"entindex_inflictor"    "integer"    ""
+	"damagebits"    "integer"    ""
+}
+
+"bonus_updated"
+{
+	"type" : "gameevents"
+	"numadvanced"    "integer"    ""
+	"numbronze"    "integer"    ""
+	"numsilver"    "integer"    ""
+	"numgold"    "integer"    ""
+}
+
+"player_stats_updated"
+{
+	"type" : "gameevents"
+	"forceupload"    "bool"    ""
+}
+
+"achievement_event"
+{
+	"type" : "gameevents"
+	"achievement_name"    "string"    "non-localized name of achievement"
+	"cur_val"    "integer"    "# of steps toward achievement"
+	"max_val"    "integer"    "total # of steps in achievement"
+}
+
+"achievement_increment"
+{
+	"type" : "gameevents"
+	"achievement_id"    "integer"    "ID of achievement that went up"
+	"cur_val"    "integer"    "# of steps toward achievement"
+	"max_val"    "integer"    "total # of steps in achievement"
+}
+
+"achievement_earned"
+{
+	"type" : "gameevents"
+	"player"    "integer"    "entindex of the player"
+	"achievement"    "integer"    "achievement ID"
+}
+
+"achievement_write_failed"
+{
+	"type" : "gameevents"
+}
+
+"physgun_pickup"
+{
+	"type" : "gameevents"
+	"entindex"    "integer"    "entity picked up"
+}
+
+"flare_ignite_npc"
+{
+	"type" : "gameevents"
+	"entindex"    "integer"    "entity ignited"
+}
+
+"helicopter_grenade_punt_miss"
+{
+	"type" : "gameevents"
+}
+
+"user_data_downloaded"  : fired when achievements/stats are downloaded from Steam or XBox Live
+{
+	"type" : "gameevents"
+}
+
+"ragdoll_dissolved"
+{
+	"type" : "gameevents"
+	"entindex"    "integer"    ""
+}
+
+"gameinstructor_draw"
+{
+	"type" : "gameevents"
+}
+
+"gameinstructor_nodraw"
+{
+	"type" : "gameevents"
+}
+
+"map_transition"
+{
+	"type" : "gameevents"
+}
+
+"entity_visible"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "The player who sees the entity"
+	"subject"    "integer"    "Entindex of the entity they see"
+	"classname"    "string"    "Classname of the entity they see"
+	"entityname"    "string"    "name of the entity they see"
+}
+
+"set_instructor_group_enabled"
+{
+	"type" : "gameevents"
+	"group"    "string"    ""
+	"enabled"    "integer"    ""
+}
+
+"instructor_server_hint_create"
+{
+	"type" : "gameevents"
+	"hint_name"    "string"    "what to name the hint. For referencing it again later (e.g. a kill command for the hint instead of a timeout)"
+	"hint_replace_key"    "string"    "type name so that messages of the same type will replace each other"
+	"hint_target"    "integer"    "entity id that the hint should display at"
+	"hint_activator_userid"    "integer"    "userid id of the activator"
+	"hint_timeout"    "integer"    "how long in seconds until the hint automatically times out, 0 = never"
+	"hint_icon_onscreen"    "string"    "the hint icon to use when the hint is onscreen. e.g. "icon_alert_red""
+	"hint_icon_offscreen"    "string"    "the hint icon to use when the hint is offscreen. e.g. "icon_alert""
+	"hint_caption"    "string"    "the hint caption. e.g. "#ThisIsDangerous""
+	"hint_activator_caption"    "string"    "the hint caption that only the activator sees e.g. "#YouPushedItGood""
+	"hint_color"    "string"    "the hint color in "r,g,b" format where each component is 0-255"
+	"hint_icon_offset"    "float"    "how far on the z axis to offset the hint from entity origin"
+	"hint_range"    "float"    "range before the hint is culled"
+	"hint_flags"    "integer"    "hint flags"
+	"hint_binding"    "string"    "bindings to use when use_binding is the onscreen icon"
+	"hint_gamepad_binding"    "string"    "gamepad bindings to use when use_binding is the onscreen icon"
+	"hint_allow_nodraw_target"    "bool"    "if false, the hint will dissappear if the target entity is invisible"
+	"hint_nooffscreen"    "bool"    "if true, the hint will not show when outside the player view"
+	"hint_forcecaption"    "bool"    "if true, the hint caption will show even if the hint is occluded"
+	"hint_local_player_only"    "bool"    "if true, only the local player will see the hint"
+}
+
+"instructor_server_hint_stop"
+{
+	"type" : "gameevents"
+	"hint_name"    "string"    "The hint to stop. Will stop ALL hints with this name"
+}
+
+"read_game_titledata"  : read user titledata from profile
+{
+	"type" : "gameevents"
+	"controllerId"    "integer"    "Controller id of user"
+}
+
+"write_game_titledata"  : write user titledata in profile
+{
+	"type" : "gameevents"
+	"controllerId"    "integer"    "Controller id of user"
+}
+
+"reset_game_titledata"  : reset user titledata; do not automatically write profile
+{
+	"type" : "gameevents"
+	"controllerId"    "integer"    "Controller id of user"
+}
+
+"weaponhud_selection"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    "Player who this event applies to"
+	"mode"    "integer"    "EWeaponHudSelectionMode (switch / pickup / drop)"
+	"entindex"    "integer"    "Weapon entity index"
+}
+
+"vote_ended"
+{
+	"type" : "gameevents"
+}
+
+"vote_started"
+{
+	"type" : "gameevents"
+	"issue"    "string"    ""
+	"param1"    "string"    ""
+	"team"    "integer"    ""
+	"initiator"    "integer"    "entity id of the player who initiated the vote"
+}
+
+"vote_changed"
+{
+	"type" : "gameevents"
+	"vote_option1"    "integer"    ""
+	"vote_option2"    "integer"    ""
+	"vote_option3"    "integer"    ""
+	"vote_option4"    "integer"    ""
+	"vote_option5"    "integer"    ""
+	"potentialVotes"    "integer"    ""
+}
+
+"vote_passed"
+{
+	"type" : "gameevents"
+	"details"    "string"    ""
+	"param1"    "string"    ""
+	"team"    "integer"    ""
+}
+
+"vote_failed"
+{
+	"type" : "gameevents"
+	"team"    "integer"    ""
+}
+
+"vote_cast"
+{
+	"type" : "gameevents"
+	"vote_option"    "integer"    "which option the player voted on"
+	"team"    "integer"    ""
+	"entityid"    "integer"    "entity id of the voter"
+}
+
+"vote_options"
+{
+	"type" : "gameevents"
+	"count"    "integer"    "Number of options - up to MAX_VOTE_OPTIONS"
+	"option1"    "string"    ""
+	"option2"    "string"    ""
+	"option3"    "string"    ""
+	"option4"    "string"    ""
+	"option5"    "string"    ""
+}
+
+"endmatch_mapvote_selecting_map"
+{
+	"type" : "gameevents"
+	"count"    "integer"    "Number of "ties""
+	"slot1"    "integer"    ""
+	"slot2"    "integer"    ""
+	"slot3"    "integer"    ""
+	"slot4"    "integer"    ""
+	"slot5"    "integer"    ""
+	"slot6"    "integer"    ""
+	"slot7"    "integer"    ""
+	"slot8"    "integer"    ""
+	"slot9"    "integer"    ""
+	"slot10"    "integer"    ""
+}
+
+"endmatch_cmm_start_reveal_items"
+{
+	"type" : "gameevents"
+}
+
+"inventory_updated"
+{
+	"type" : "gameevents"
+}
+
+"cart_updated"
+{
+	"type" : "gameevents"
+}
+
+"store_pricesheet_updated"
+{
+	"type" : "gameevents"
+}
+
+"gc_connected"
+{
+	"type" : "gameevents"
+}
+
+"item_schema_initialized"
+{
+	"type" : "gameevents"
+}
+
+"client_loadout_changed"
+{
+	"type" : "gameevents"
+}
+
+"add_player_sonar_icon"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    ""
+	"pos_x"    "float"    ""
+	"pos_y"    "float"    ""
+	"pos_z"    "float"    ""
+}
+
+"add_bullet_hit_marker"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    ""
+	"bone"    "integer"    ""
+	"pos_x"    "integer"    ""
+	"pos_y"    "integer"    ""
+	"pos_z"    "integer"    ""
+	"ang_x"    "integer"    ""
+	"ang_y"    "integer"    ""
+	"ang_z"    "integer"    ""
+	"start_x"    "integer"    ""
+	"start_y"    "integer"    ""
+	"start_z"    "integer"    ""
+	"hit"    "bool"    ""
+}
+
+"verify_client_hit"
+{
+	"type" : "gameevents"
+	"userid"    "integer"    ""
+	"pos_x"    "float"    ""
+	"pos_y"    "float"    ""
+	"pos_z"    "float"    ""
+	"timestamp"    "float"    ""
+}
+

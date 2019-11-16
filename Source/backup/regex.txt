@@ -1,0 +1,28 @@
+============== PARSER REGEX ========================================
+//Get Event name and comment (If any)
+> ^(?:\s)?\"(.+)\"(?:\s+|\n)?(?://\s(.+))?
+
+//Get Attribute Name, Attribute Type and Attribute Comment (If any)
+> ^(?:\s+)\"(.*?)\"(?:\s+)\"(.*?)\"(?:\s+//\s(.+))?
+====================================================================
+
+============= Program REGEX ========================================
+//Get event name and comment (if any)
+> ^"(.+)"(?:\s*:\s(.*))?
+
+//Get event type, attributes information as well
+> ^\t\"type\"\s:\s\"(modevents|serverevents|gameevents)
+
+# BREAK-DOWN REGEX #
+Get Type > ^\t\"type\"\s:\s\"(modevents|serverevents|gameevents)\"
+Get Attributes Info > ^\t\"(.+)\"\s{4}\"(.+)\"\s{4}(?:\"(.+)\")?
+
+FINAL PATTERN RESULT (With Pipeline (|) OR) > ^\t\"type\"\s:\s\"(modevents|serverevents|gameevents)\"|^\t\"(.+)\"\s{4}\"(.+)\"\s{4}(?:\"(.+)\")?
+
+# GROUPS BREAKDOWN (INDEXES) #
+G[0] = Matched string (Input basically!)
+G[1] = The event(s) type (Mod, Server or Game)
+G[2] = Attribute(s) Name (userid, haskit etc)
+G[3] = Attribute(s) Type (Integer, Float, Boolean, String)
+G[4] = Attribute(s) Comment (If any)
+====================================================================

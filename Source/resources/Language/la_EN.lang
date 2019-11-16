@@ -1,0 +1,28 @@
+//Windows Text
+Title = CSGO Event Finder
+
+//UI Text Controls
+L_DTI = Data type Icons:
+L_DI = Integer
+L_DB = Boolean
+L_DF = Float
+L_DS = String
+L_ES = Enter your search here
+L_IS = In Squirrel:
+L_GE = Is Global Function?
+B_CP = COPY
+
+//DIALOG Button Text
+D_BTN_T = OKAY
+
+//No Code Selected DIALOG
+D_NCS_T = No Code Selected
+D_NCS_D = You didn't select an event to copy! \r\nYou can select an event by clicking an event from the left hand side of the screen!
+
+//Code Succesful Copy
+D_CSC_T = Code successful!
+D_CSC_D = The code generated from here has been successfully coped to your clipboard! \r\nTo paste it, use CTRL+P in your favourite text editor!
+
+//Code already exists
+D_CAE_T = Code already exists in buffer!
+D_CAE_D = Oh dear! The code you want to copy is already in your clipboard! \r\nPlease select another text to copy from!

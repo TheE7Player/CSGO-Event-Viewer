@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CSGO_Event_Finder:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CSGO_Event_Finder_jar</output-path>
+    <root id="archive" name="CSGO_Event_Finder.jar">
+      <element id="module-output" name="CSGO_Event_Finder" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/library/jfoenix-8.0.8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
