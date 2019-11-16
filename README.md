@@ -15,10 +15,14 @@ As of the latest build (0.3) it supports the following:
 With the provided .bat file (Windows), uncomment the second java line to load the Russian version...
 
 ### Launch in English
+```
     java -jar CSGO_Event_Finder.jar
+```
 ### Launch in Russian
 Just add the argument **"-ru"** after **".jar"**
-   `java -jar CSGO_Event_Finder.jar -ru`
+```
+    java -jar CSGO_Event_Finder.jar -ru
+```
 # How to download this application
 You can download it from [here](https://github.com/TheE7Player/CSGO-Event-Viewer/releases), which holds the latest edition of this program.
 
