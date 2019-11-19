@@ -1,6 +1,5 @@
 package sample;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -9,6 +8,8 @@ import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
@@ -16,19 +17,21 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
+import java.net.*;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import sun.misc.IOUtils;
 
 public class Controller {
     @FXML
@@ -53,13 +56,16 @@ public class Controller {
     private TextField searchBox;
 
     @FXML
-    private Label BuildTag; // <- Holds the build number and date
+    private Label BuildTag, languageText; // <- Holds the build number and date
 
     @FXML
-    private String BuildNumber = "0.3";
+    private String BuildNumber = "0.4";
 
     @FXML
     private ImageView icon_Str, icon_Float, icon_Bool, icon_Int;
+
+    @FXML
+    private ImageView languageFlag;
 
     @FXML
     private Map<String, Background> EventColour = new HashMap<>();
@@ -119,6 +125,20 @@ public class Controller {
         icon_Str.setImage(Main.StringIcon); icon_Float.setImage(Main.FloatIcon); icon_Bool.setImage(Main.BoolIcon); icon_Int.setImage(Main.IntIcon);
         icon_Str.setCache(true); icon_Float.setCache(true); icon_Bool.setCache(true); icon_Int.setCache(true);
 
+        switch(sample.Main.DefaultLanguage)
+        {
+            case RUSSIAN:
+                languageFlag.setImage(Main.Russian);
+                languageText.setText("Росси́я");
+                break;
+
+            case ENGLISH:
+                languageFlag.setImage(Main.English);
+                languageText.setText("UK/US ENGLISH");
+                break;
+        }
+        languageFlag.setCache(true);
+
         //Grab only the names of the events
         EventsNames = Main.Events.stream().map(EventsData::GetEventName).collect(Collectors.toList());
 
@@ -136,6 +156,50 @@ public class Controller {
             DoSearch(searchBox.getText());
         });
         SetLanguage();
+
+        double GetVersion = UpdateToDate();
+        if(GetVersion > -1)
+            UpdateDialog(Main._lang.GetValue("UP_T"), Main._lang.GetValue("UP_D"), String.format(Main._lang.GetValue("UP_L"), BuildNumber, GetVersion));
+    }
+
+    private double UpdateToDate()
+    {
+        URL url;
+
+        try {
+            // get URL content
+
+            String a="https://github.com/TheE7Player/CSGO-Event-Viewer/releases/latest";
+            url = new URL(a);
+            URLConnection conn = url.openConnection();
+
+            // open the stream and put it into BufferedReader
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+
+            String LatestBuild = null;
+
+            String inputLine;
+            while ((inputLine = br.readLine()) != null) {
+
+                if(inputLine.contains("<span class=\"css-truncate-target\" style=\"max-width: 125px\">"))
+                {
+                    LatestBuild = inputLine.substring(inputLine.indexOf("v") + 1, inputLine.lastIndexOf("<"));
+                    break;
+                }
+            }
+            br.close();
+
+            if(Double.parseDouble(BuildNumber) < Double.parseDouble(LatestBuild))
+            {
+                return Double.parseDouble(LatestBuild);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     //Code to execute when first launched
@@ -177,11 +241,19 @@ public class Controller {
         if(eventList.getSelectionModel().getSelectedItem() == "No Results Found")
             return;
 
-        int workingIndex = eventList.getSelectionModel().getSelectedIndex();
+        //[OLD] Unavailable way of looking for item (If searching, it won't match the correct type!)
+        //int workingIndex = eventList.getSelectionModel().getSelectedIndex();
 
-        if(workingIndex < EventsNames.size() && workingIndex >= 0) //Check if index is suitable
+        //Optional - Container to hold null values (No need to test for Null Exception(s) in run-time!)
+
+        Optional<EventsData> FilterSearch = Main.Events.stream()                                        //Turn Events list into a stream
+                .filter(p -> p.EventName.startsWith(eventList.getSelectionModel().getSelectedItem()))   //Then, for each entity, look for the highlighted text for each entity in "Eventname"
+                .findFirst();                                                                           //Finally, Return the first result
+
+        if(FilterSearch.isPresent()) //Check if FilterSearch isn't null (Present = Has an item)
         {
-            EventsData filteredItem = Main.Events.get(workingIndex);
+            EventsData filteredItem = FilterSearch.get(); //Return the value from FilterSearch into filteredItem
+            FilterSearch = null; //Dereference FilterSearch
 
             //Reset treeview for next item!
             EventTree.setRoot(null);
@@ -194,7 +266,7 @@ public class Controller {
             if(filteredItem.EventComment != null)
             {
                 TreeItem<String> CommentHead = new TreeItem<>("Comment");
-                TreeItem<String> CommentBody = new TreeItem<>(filteredItem.EventComment);
+                TreeItem<String> CommentBody = new TreeItem<>(CapitaliseFirstLetter(filteredItem.EventComment));
                 CommentHead.getChildren().add(CommentBody);
                 root.getChildren().add(CommentHead);
             }
@@ -209,7 +281,7 @@ public class Controller {
 
                     if (item.GetComment() != null) {
                         //Attribute has a comment!
-                        String comment = StringUtils.capitalize(item.GetComment());
+                        String comment = StringUtils.capitalize(CapitaliseFirstLetter(item.GetComment()));
                         TreeItem<String> cm = new TreeItem<>(comment);
                         child.getChildren().add(cm);
                     }
@@ -293,6 +365,97 @@ public class Controller {
         msg.show();
     }
 
+    private void UpdateDialog(String title, String Text, String UpdateTxt)
+    {
+        JFXDialogLayout DialogContainer = new JFXDialogLayout();
+
+        //Assign it's header and description text (Head and Body)
+        DialogContainer.setHeading(new Text(title));
+        DialogContainer.setBody(new Text(Text + System.lineSeparator() + UpdateTxt));
+
+        //Create a button with the text from param "ButtonText"
+        JFXButton buttonYes = new JFXButton(Main._lang.GetValue("D_BTN_Y"));
+        JFXButton buttonNo = new JFXButton(Main._lang.GetValue("D_BTN_N"));
+
+        //Create a dialog called "msg" which holds all the information and displays back to user
+        JFXDialog msg = new JFXDialog(Stack_pane, DialogContainer, JFXDialog.DialogTransition.CENTER);
+
+        //Assign the buttons click event to close down the dialog, and assign its action to DialogLayout too!
+        buttonNo.setOnAction(event -> {msg.close();});
+        buttonYes.setOnAction(event ->
+        {
+            try
+            {
+                OpenBrowserLatestEdition();
+            }
+            catch(Exception e)
+            {
+                System.out.println("ERROR LOADING LINK -> https://github.com/TheE7Player/CSGO-Event-Viewer/releases/latest");
+                e.printStackTrace();
+
+            }
+            msg.close();
+        });
+
+        DialogContainer.setActions(buttonYes, buttonNo);
+
+        //Now, we finally assign it back to the main entity and display to our user!
+        msg.setContent(DialogContainer);
+        msg.show();
+    }
+
+    private void ChangeLanguage(Language.Languages NewLanguage)
+    {
+        JFXDialogLayout DialogContainer = new JFXDialogLayout();
+
+        //Assign it's header and description text (Head and Body)
+        DialogContainer.setHeading(new Text(Main._lang.GetValue("CLT_T")));
+        DialogContainer.setBody(new Text(String.format(Main._lang.GetValue("CLT_D"),Main.DefaultLanguage.toString(), NewLanguage.toString())));
+
+        //Create a button with the text from param "ButtonText"
+        JFXButton buttonYes = new JFXButton(Main._lang.GetValue("D_BTN_Y"));
+        JFXButton buttonNo = new JFXButton(Main._lang.GetValue("D_BTN_N"));
+
+        //Create a dialog called "msg" which holds all the information and displays back to user
+        JFXDialog msg = new JFXDialog(Stack_pane, DialogContainer, JFXDialog.DialogTransition.CENTER);
+
+        //Assign the buttons click event to close down the dialog, and assign its action to DialogLayout too!
+        buttonNo.setOnAction(event -> {msg.close();});
+        buttonYes.setOnAction(event ->
+        {
+            Main.ChangeConfigLanguage(NewLanguage);
+            msg.close();
+        });
+
+        DialogContainer.setActions(buttonYes, buttonNo);
+
+        //Now, we finally assign it back to the main entity and display to our user!
+        msg.setContent(DialogContainer);
+        msg.show();
+    }
+
+    @FXML public void ChangeLanguage()
+    {
+        if(Main.DefaultLanguage == Language.Languages.ENGLISH)
+            ChangeLanguage(Language.Languages.RUSSIAN);
+        else
+            ChangeLanguage(Language.Languages.ENGLISH);
+    }
+
+    private void OpenBrowserLatestEdition() throws IOException, URISyntaxException {
+        //https://stackoverflow.com/a/17950164
+        String url = "https://github.com/TheE7Player/CSGO-Event-Viewer/releases/latest";
+
+        if (Desktop.isDesktopSupported()) {
+            // Windows
+            Desktop.getDesktop().browse(new URI(url));
+        } else {
+            // Ubuntu
+            Runtime runtime = Runtime.getRuntime();
+            runtime.exec("/usr/bin/firefox -new-window " + url);
+        }
+    }
+
     private void TryAssignToClipBoard(String Text) throws IOException {
         ClipboardContent content = new ClipboardContent();
         content.putString(Text);
@@ -337,4 +500,19 @@ public class Controller {
 
         codeDisplay.setText(sb.toString());
     }
+
+    public String CapitaliseFirstLetter(String input)
+    {
+        input = input.trim(); //Trim the input first
+        char[] charArray = input.toCharArray(); //Turn string into character Array
+
+        if(!Character.isUpperCase(charArray[0])) //Is the first element in Character Array not Upper case?
+            charArray[0] = Character.toUpperCase(charArray[0]); //Change it so it is upper case!
+        else
+            return input; //No need to change, return back normal
+
+        //[NOTE] "newString(charArray)" is faster than "charArray.toString()"!
+        return new String(charArray); //There was change, return back the edited array into string
+    }
+
 }

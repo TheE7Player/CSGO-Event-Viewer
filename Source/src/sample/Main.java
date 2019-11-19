@@ -6,13 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import sun.security.krb5.internal.rcache.DflCache;
+import javafx.stage.StageStyle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -33,12 +37,19 @@ public class Main extends Application {
         float - https://icons8.com/icon/53095/hot-air-balloon
         string - https://icons8.com/icon/43033/typography
         boolean - https://icons8.com/icon/49747/conversion
+
+        Flag Size: 200px * 200px * 72dpi (W x H x Dots per Inch)
     */
 
     //Set default language to English
-    private static Language.Languages DefaultLanguage = Language.Languages.ENGLISH;
+    public static Language.Languages DefaultLanguage = Language.Languages.ENGLISH;
     public static Language _lang;
+
+    //Data type Icons
     public static Image StringIcon, FloatIcon, BoolIcon, IntIcon;
+
+    //Flag Icons
+    public static Image English, Russian;
 
     public static List<EventsData> Events = new ArrayList<>();
 
@@ -52,7 +63,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle(_lang.GetValue("Title"));
         primaryStage.setScene(new Scene(root, 1280, 720));
-
+        primaryStage.initStyle(StageStyle.UTILITY); //Allows only X in window
         //Now setup language
         primaryStage.show();
     }
@@ -61,10 +72,15 @@ public class Main extends Application {
     {
         //First, Let's assign our icons (StringIcon, FloatIcon etc)
         try {
+            //Data type icons
             StringIcon = new Image(new FileInputStream("resources/str.png"));
             FloatIcon = new Image(new FileInputStream("resources/float.png"));
             BoolIcon = new Image(new FileInputStream("resources/bool.png"));
             IntIcon = new Image(new FileInputStream("resources/int.png"));
+
+            //Language flags
+            English = new Image(new FileInputStream("resources/flag/english.png"));
+            Russian = new Image(new FileInputStream("resources/flag/russian.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -154,20 +170,95 @@ public class Main extends Application {
         return Events.stream().anyMatch(e -> e.GetEventName().startsWith(name));
     }
 
-    public static void main(String[] args) {
-        //ENGLISH BY DEFAULT
+    public static void ChangeConfigLanguage(Language.Languages newLang)
+    {
         try
         {
-            if(args[0].equals("-ru")) {
-                DefaultLanguage = Language.Languages.RUSSIAN; System.out.println("DEFAULT LANGUAGE: RUSSIAN");
-            }
+            Path config = Paths.get("./CONFIG.cfg"); //Store it into where the .jar is launched from
+            List<String> file = Files.readAllLines(config);
+            file.set(0, "LANG = " + newLang.toString());
+            Files.write(config, file, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
 
-            launch(args);
         }
-        catch (java.lang.ArrayIndexOutOfBoundsException e)
+        catch (Exception e)
         {
-            System.out.println("NO ARGUMENTS PASSED IN - DEFAULT LANGUAGE: ENGLISH");
-            launch(args);
+            e.printStackTrace();
+            System.out.println("ERROR SETTING NEW LANGUAGE!");
         }
+    }
+
+    private static void InitialiseConfigFile(String[] args) throws IOException {
+        //Get the path where we store/use the configuration file
+        Path config = Paths.get("./CONFIG.cfg"); //Store it into where the .jar is launched from
+
+        /*
+            CONFIG STRUCTURE:
+            Line[0] 1 - Program language
+
+        */
+
+        //Now, check if we already have it
+        if(Files.exists(config))
+        {
+            //Config file exists!
+            List<String> file = Files.readAllLines(config);
+
+            //Step 1: Validate language
+            String lg = file.get(0).replace("LANG = ", ""); //Get rid of "LANG = " in string
+            Language.Languages lang;
+            try
+            {
+                lang = Enum.valueOf(Language.Languages.class, lg);
+                if(!lang.equals(null) && !DefaultLanguage.equals(lang))
+                {
+                    //This means that the config has a language that isn't assigned as ENGLISH
+                    DefaultLanguage = lang;
+                }
+            }
+            catch (IllegalArgumentException IAE)
+            {
+                //Leave alone, default will be english
+                lang = DefaultLanguage;
+                System.out.println(String.format("ERROR: Unknown Language \"%s\" - SET TO DEFAULT (ENGLISH)", lg));
+            }
+        }
+        else
+        {
+            //Config file doesn't exist!
+            List<String> newConfig = new ArrayList<>();
+
+            Language.Languages lang = (GetArrayLength(args) > -1) ? GetLanguage(args[0]) : GetLanguage("");
+            newConfig.add(String.format("LANG = %s", lang.toString()));
+            DefaultLanguage = lang;
+            Files.write(config, newConfig, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+        }
+
+        launch(args);
+    }
+
+    private static int GetArrayLength(Object[] array)
+    {
+        try
+        {
+            return (array.length > 0) ? array.length : -1;
+        }
+        catch(ArrayIndexOutOfBoundsException ae)
+        {
+            return -1;
+        }
+    }
+
+    private static Language.Languages GetLanguage(String argument)
+    {
+        //If has -ru argument
+        if(argument.equals("-ru")){return Language.Languages.RUSSIAN;}
+
+        //If nothing has matched, use this default language
+        return Language.Languages.ENGLISH;
+    }
+
+    public static void main(String[] args) throws IOException {
+        //ENGLISH BY DEFAULT
+        InitialiseConfigFile(args);
     }
 }

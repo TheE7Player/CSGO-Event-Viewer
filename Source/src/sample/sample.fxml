@@ -3,13 +3,16 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -177,5 +180,30 @@
             <Insets left="65.0" top="120.0" />
          </StackPane.margin>
       </HBox>
+      <ImageView fx:id="languageFlag" cache="true" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ChangeLanguage" pickOnBounds="true" scaleX="0.5" scaleY="0.5" scaleZ="0.5" StackPane.alignment="TOP_RIGHT">
+         <image>
+            <Image url="@../../resources/flag/english.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Reflection fraction="0.07" />
+         </effect>
+         <StackPane.margin>
+            <Insets right="20.0" top="20.0" />
+         </StackPane.margin>
+         <viewport>
+            <Rectangle2D width="200.0" />
+         </viewport>
+      </ImageView>
+      <Label fx:id="languageText" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="201.0" text="UK/US ENGLISH" textAlignment="CENTER" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="22.0" top="140.0" />
+         </StackPane.margin>
+         <effect>
+            <Bloom threshold="0.28" />
+         </effect>
+      </Label>
    </children>
 </StackPane>

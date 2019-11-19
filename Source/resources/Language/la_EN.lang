@@ -14,6 +14,8 @@ B_CP = COPY
 
 //DIALOG Button Text
 D_BTN_T = OKAY
+D_BTN_Y = YES
+D_BTN_N = NO
 
 //No Code Selected DIALOG
 D_NCS_T = No Code Selected
@@ -26,3 +28,12 @@ D_CSC_D = The code generated from here has been successfully coped to your clipb
 //Code already exists
 D_CAE_T = Code already exists in buffer!
 D_CAE_D = Oh dear! The code you want to copy is already in your clipboard! \r\nPlease select another text to copy from!
+
+//Updater Text
+UP_T = Update available
+UP_D = There is a new version available in GitHub to download, do you wish to install it?
+UP_L = You are currently running in v%s (Latest is v%s)
+
+//CHANGING LANGUAGE Text
+CLT_T = CHANGE LANGUAGE
+CLT_D = You are about to change the language from %s to %s,\r\nAre you sure you want to make this change? (Reboot is required!)
