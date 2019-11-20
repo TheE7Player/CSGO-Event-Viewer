@@ -31,7 +31,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import sun.misc.IOUtils;
 
 public class Controller {
     @FXML
@@ -59,7 +58,7 @@ public class Controller {
     private Label BuildTag, languageText; // <- Holds the build number and date
 
     @FXML
-    private String BuildNumber = "0.4";
+    private String BuildNumber = "0.4.1";
 
     @FXML
     private ImageView icon_Str, icon_Float, icon_Bool, icon_Int;
@@ -159,7 +158,7 @@ public class Controller {
 
         double GetVersion = UpdateToDate();
         if(GetVersion > -1)
-            UpdateDialog(Main._lang.GetValue("UP_T"), Main._lang.GetValue("UP_D"), String.format(Main._lang.GetValue("UP_L"), BuildNumber, GetVersion));
+            UpdateDialog(Main._lang.GetValue("UP_T"), Main._lang.GetValue("UP_D"), String.format(Main._lang.GetValue("UP_L"), BuildNumber, ExpandVersionSize(String.valueOf(GetVersion))));
     }
 
     private double UpdateToDate()
@@ -184,15 +183,15 @@ public class Controller {
 
                 if(inputLine.contains("<span class=\"css-truncate-target\" style=\"max-width: 125px\">"))
                 {
-                    LatestBuild = inputLine.substring(inputLine.indexOf("v") + 1, inputLine.lastIndexOf("<"));
+                    LatestBuild = inputLine.substring(inputLine.indexOf(".")-1, inputLine.lastIndexOf("<"));
                     break;
                 }
             }
             br.close();
 
-            if(Double.parseDouble(BuildNumber) < Double.parseDouble(LatestBuild))
+            if(Double.parseDouble(ShrinkVersionSize(BuildNumber)) < Double.parseDouble(ShrinkVersionSize(LatestBuild)))
             {
-                return Double.parseDouble(LatestBuild);
+                return Double.parseDouble(ShrinkVersionSize(LatestBuild));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -200,6 +199,49 @@ public class Controller {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    private String ShrinkVersionSize(String ver)
+    {
+        char[] Text = ver.toCharArray();
+        StringBuilder output = new StringBuilder();
+
+        int DotCount = 0;
+        for (char i : Text)
+        {
+            if(i == '.')
+            {
+                if(DotCount < 1){output.append('.');}  DotCount++;
+            }
+            else
+                output.append(i);
+        }
+
+        return output.toString();
+    }
+
+    private String ExpandVersionSize(String ver)
+    {
+        if(ver.startsWith("0.") && ver.length() == 3)
+            return ver; //No need to expand (eg 0.4, 0.5, 5.6 etc)
+
+        char[] Text = ver.toCharArray();
+        StringBuilder output = new StringBuilder();
+
+        int loopCount = 0;
+        for (char i : Text)
+        {
+            if(Character.isDigit(i))
+            {
+                if((loopCount + 1) < Text.length)
+                    output.append(i + ".");
+                else
+                    output.append(i);
+            }
+            loopCount++;
+        }
+
+        return output.toString();
     }
 
     //Code to execute when first launched
