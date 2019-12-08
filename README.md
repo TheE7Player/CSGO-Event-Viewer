@@ -6,7 +6,7 @@
 # Introducing multiple language support
 The program now allows you to run the program in the language you want it to be (if it is supported).
 
-As of the latest build (0.3) it supports the following:
+As of the latest build (0.4.2) it supports the following:
 
  - English (UK & US)
  - Russian (Thank you **@DMax#2494**)
