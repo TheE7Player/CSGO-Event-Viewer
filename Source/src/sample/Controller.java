@@ -21,6 +21,12 @@ import java.awt.*;
 import java.io.*;
 import java.net.*;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,6 +37,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+
+import TheE7Player.*;
 
 public class Controller {
     @FXML
@@ -58,7 +66,7 @@ public class Controller {
     private Label BuildTag, languageText; // <- Holds the build number and date
 
     @FXML
-    private String BuildNumber = "0.4.1";
+    private String BuildNumber = "0.4.2";
 
     @FXML
     private ImageView icon_Str, icon_Float, icon_Bool, icon_Int;
@@ -156,92 +164,59 @@ public class Controller {
         });
         SetLanguage();
 
-        double GetVersion = UpdateToDate();
-        if(GetVersion > -1)
-            UpdateDialog(Main._lang.GetValue("UP_T"), Main._lang.GetValue("UP_D"), String.format(Main._lang.GetValue("UP_L"), BuildNumber, ExpandVersionSize(String.valueOf(GetVersion))));
+        //If it isn't the most resent version available:
+        if(!UpdateToDate())
+            UpdateDialog(Main._lang.GetValue("UP_T"), Main._lang.GetValue("UP_D"), String.format(Main._lang.GetValue("UP_L"), BuildNumber, ProductComparer.GetLatestVersion()));
     }
 
-    private double UpdateToDate()
+    private boolean UpdateToDate()
     {
-        URL url;
-
-        try {
-            // get URL content
-
-            String a="https://github.com/TheE7Player/CSGO-Event-Viewer/releases/latest";
-            url = new URL(a);
-            URLConnection conn = url.openConnection();
-
-            // open the stream and put it into BufferedReader
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-
-            String LatestBuild = null;
-
-            String inputLine;
-            while ((inputLine = br.readLine()) != null) {
-
-                if(inputLine.contains("<span class=\"css-truncate-target\" style=\"max-width: 125px\">"))
-                {
-                    LatestBuild = inputLine.substring(inputLine.indexOf(".")-1, inputLine.lastIndexOf("<"));
-                    break;
-                }
-            }
-            br.close();
-
-            if(Double.parseDouble(ShrinkVersionSize(BuildNumber)) < Double.parseDouble(ShrinkVersionSize(LatestBuild)))
-            {
-                return Double.parseDouble(ShrinkVersionSize(LatestBuild));
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    private String ShrinkVersionSize(String ver)
-    {
-        char[] Text = ver.toCharArray();
-        StringBuilder output = new StringBuilder();
-
-        int DotCount = 0;
-        for (char i : Text)
+        try
         {
-            if(i == '.')
+            Path config = Paths.get("./CONFIG.cfg"); //Store it into where the .jar is launched from
+            //Look at line 2, Date when checked
+            List<String> file = Files.readAllLines(config); //Read in the whole file into "file"
+
+            DateFormat date_Format = new SimpleDateFormat("dd/MM/yyyy");
+            Date todays_Date = new Date();
+
+            if(file.size() < 2)
+                file.add(null);
+
+            if(file.get(1) == null)
             {
-                if(DotCount < 1){output.append('.');}  DotCount++;
+                //Set the date one day from now
+                file.set(1, date_Format.format(todays_Date));
+                Files.write(config, file, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
             }
             else
-                output.append(i);
-        }
-
-        return output.toString();
-    }
-
-    private String ExpandVersionSize(String ver)
-    {
-        if(ver.startsWith("0.") && ver.length() == 3)
-            return ver; //No need to expand (eg 0.4, 0.5, 5.6 etc)
-
-        char[] Text = ver.toCharArray();
-        StringBuilder output = new StringBuilder();
-
-        int loopCount = 0;
-        for (char i : Text)
-        {
-            if(Character.isDigit(i))
             {
-                if((loopCount + 1) < Text.length)
-                    output.append(i + ".");
-                else
-                    output.append(i);
-            }
-            loopCount++;
-        }
+                //Parse dd/MM/yyyy to Date time from Config file on line 2 (index 1)
+                String lastCheck = file.get(1);
+                String newFormat = date_Format.format(todays_Date).toString();
 
-        return output.toString();
+                if(lastCheck.equals(newFormat)) //If these 2 days are equal (equals 0)
+                {System.out.println("Already checked update today!");return true;}
+                else
+                {
+                    file.set(1, date_Format.format(todays_Date));
+                    Files.write(config, file, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+                }
+            }
+
+            GitHubFunctions udp = new GitHubFunctions("thee7player", GitHubUpdater.LogTypeSettings.LogErrorOnly);
+
+            //Target Repo with name
+            Repo target = udp.GetRepository("CSGO-Event-Viewer");
+
+            //If current version running is less than the current online version, then return true!
+            return ProductComparer.CompareVersionLess("thee7player", BuildNumber, target);
+
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 
     //Code to execute when first launched
