@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="Stack_pane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.Controller">
+   <children>
+      <TextArea fx:id="codeDisplay" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="239.0" prefWidth="701.0">
+         <StackPane.margin>
+            <Insets right="-90.0" top="400.0" />
+         </StackPane.margin></TextArea>
+      <Label alignment="TOP_LEFT" layoutX="999.0" layoutY="50.0" prefHeight="43.0" prefWidth="275.0" text="CSGO EVENT FINDER" StackPane.alignment="TOP_LEFT">
+         <font>
+            <Font size="28.0" />
+         </font>
+         <StackPane.margin>
+            <Insets left="30.0" top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <TextField fx:id="searchBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="491.0" promptText="Enter your search here" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets right="120.0" top="13.0" />
+         </StackPane.margin>
+      </TextField>
+      <Label fx:id="BuildTag" prefHeight="43.0" prefWidth="171.0" text="Build 0.X.X (27/10/19)" textAlignment="CENTER" StackPane.alignment="BOTTOM_RIGHT">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <effect>
+            <DropShadow height="4.0" radius="1.5" width="4.0" />
+         </effect>
+         <StackPane.margin>
+            <Insets right="30.0" />
+         </StackPane.margin>
+      </Label>
+      <ListView fx:id="eventList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#DoWork" onMouseClicked="#listClicked" prefHeight="618.0" prefWidth="275.0" StackPane.alignment="CENTER_LEFT">
+         <StackPane.margin>
+            <Insets left="30.0" top="20.0" />
+         </StackPane.margin>
+      </ListView>
+      <Label fx:id="dt_icons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="281.0" text="Data type Icons:" StackPane.alignment="TOP_CENTER">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <StackPane.margin>
+            <Insets right="320.0" top="60.0" />
+         </StackPane.margin>
+      </Label>
+      <TreeView fx:id="EventTree" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="700.0" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets left="90.0" top="140.0" />
+         </StackPane.margin></TreeView>
+      <Label prefHeight="83.0" prefWidth="230.0" scaleShape="false" text="&#9;Created By TheE7Player&#10;&#9;Discord: JamesG[E7]#5112&#10;&#9;Twitter: @TheE7Player&#10;" textAlignment="CENTER" StackPane.alignment="BOTTOM_RIGHT">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <effect>
+            <DropShadow color="#9611c3" />
+         </effect>
+         <StackPane.margin>
+            <Insets bottom="35.0" right="15.0" />
+         </StackPane.margin>
+      </Label>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="800.0" StackPane.alignment="TOP_CENTER">
+         <children>
+            <Label fx:id="StrStr" text="String">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="icon_Str" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/str.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <Label fx:id="IntStr" text="Integer">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="icon_Int" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/int.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="BoolStr" text="Boolean">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="icon_Bool" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/bool.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="FloStr" text="Float">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="icon_Float" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/float.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+         <StackPane.margin>
+            <Insets left="190.0" top="95.0" />
+         </StackPane.margin>
+      </HBox>
+      <Label prefHeight="43.0" prefWidth="411.0" text="Welcome to CSGO Event Finder!" textAlignment="CENTER" StackPane.alignment="TOP_RIGHT">
+         <font>
+            <Font size="28.0" />
+         </font>
+         <StackPane.margin>
+            <Insets top="10.0" />
+         </StackPane.margin>
+      </Label>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="672.0" StackPane.alignment="CENTER">
+         <children>
+            <Label fx:id="in_squ" prefHeight="43.0" prefWidth="144.0" text="In Squirrel:" textAlignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <CheckBox fx:id="isGlobalFunction" mnemonicParsing="false" onAction="#DoWork" text="Is Global Function?">
+               <HBox.margin>
+                  <Insets right="20.0" top="12.0" />
+               </HBox.margin>
+            </CheckBox>
+            <JFXButton fx:id="CopyToClipBoard" buttonType="RAISED" onAction="#CopyToClip" prefHeight="36.0" prefWidth="146.0" style="-fx-background-color: #584FA8; -jfx-button-type: RAISED;" text="COPY" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+         <StackPane.margin>
+            <Insets left="65.0" top="120.0" />
+         </StackPane.margin>
+      </HBox>
+      <ImageView fx:id="languageFlag" cache="true" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ChangeLanguage" pickOnBounds="true" scaleX="0.5" scaleY="0.5" scaleZ="0.5" StackPane.alignment="TOP_RIGHT">
+         <image>
+            <Image url="@../../resources/flag/english.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Reflection fraction="0.07" />
+         </effect>
+         <StackPane.margin>
+            <Insets right="20.0" top="20.0" />
+         </StackPane.margin>
+         <viewport>
+            <Rectangle2D width="200.0" />
+         </viewport>
+      </ImageView>
+      <Label fx:id="languageText" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="201.0" text="UK/US ENGLISH" textAlignment="CENTER" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets right="22.0" top="140.0" />
+         </StackPane.margin>
+         <effect>
+            <Bloom threshold="0.28" />
+         </effect>
+      </Label>
+   </children>
+</StackPane>

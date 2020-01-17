@@ -1,0 +1,4 @@
+/*   Allows clear text to be used, no LCD AA   */
+.text{
+    -fx-font-smoothing-type: gray;
+}

@@ -11,7 +11,6 @@ import javafx.stage.StageStyle;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main extends Application {
-
+    public static Stage mainWindow;
     /*
         short, byte, long = integer
         string, wstring = string
@@ -55,18 +54,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+        mainWindow = primaryStage;
         _lang = new Language(DefaultLanguage);
         SetupVariables();
+        //"../scene/sample.fxml"
 
         //This means now Events is in ASC order based on event names, let's pass this through to the Controller (UI)
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle(_lang.GetValue("Title"));
-        primaryStage.setScene(new Scene(root, 1280, 720));
-        primaryStage.initStyle(StageStyle.UTILITY); //Allows only X in window
+        //"../scene/dev/splash_screen.fxml"
+        Parent root = FXMLLoader.load(getClass().getResource("/scene/dev/splash_screen.fxml"));
+
+        mainWindow.setTitle(_lang.GetValue("Title"));
+        mainWindow.setScene(new Scene(root, 1280, 720));
+        mainWindow.initStyle(StageStyle.UTILITY); //Allows only X in window
         //Now setup language
-        primaryStage.show();
+        mainWindow.show();
     }
+
 
     private void SetupVariables()
     {

@@ -21,7 +21,7 @@ D_BTN_N = NO
 D_NCS_T = No Code Selected
 D_NCS_D = You didn't select an event to copy! \r\nYou can select an event by clicking an event from the left hand side of the screen!
 
-//Code Succesful Copy
+//Code Successful Copy
 D_CSC_T = Code successful!
 D_CSC_D = The code generated from here has been successfully coped to your clipboard! \r\nTo paste it, use CTRL+P in your favourite text editor!
 
@@ -37,3 +37,10 @@ UP_L = You are currently running in v%s (Latest is v%s)
 //CHANGING LANGUAGE Text
 CLT_T = CHANGE LANGUAGE
 CLT_D = You are about to change the language from %s to %s,\r\nAre you sure you want to make this change? (Reboot is required!)
+
+//NEW SPLASH SCREEN Text
+SC_C = Checking online version...
+SC_I = Ignoring, check was already made today
+SC_U = Update available
+SC_E = Error, continuing...
+SC_R = Resuming program
