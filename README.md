@@ -2,7 +2,7 @@
 
 > This project is now abandoned due to commitments else where on other projects
 
-> A new once have been made instead and will be the new CSEV that works: [CSEV 2](https://github.com/TheE7Player/CSEV2).
+> A new one have been made instead and will be the new CSEV that works: [CSEV 2](https://github.com/TheE7Player/CSEV2).
 
 
  A Java project to allow users to see what events you can use with [logic_eventlistener](https://developer.valvesoftware.com/wiki/Logic_eventlistener).
